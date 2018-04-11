@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jump for Joy</title>
+		<link href="styles/my_style.css" rel="stylesheet">
+		<script src="scripts/jquery-3.3.1.min.js"></script>
+	</head>
+	<body>
+		<div id="header">
+			<h2>Jump for Joy Sale</h2>
+		</div>
+		<div id="main">
+			<div><img src="images/jump1.jpg"/></div>
+			<div><img src="images/jump2.jpg"/></div>
+			<div><img src="images/jump3.jpg"/></div>
+			<div><img src="images/jump4.jpg"/></div>
+		</div>
+	</body>
+</html>
+<script>
+	$(function(){
+		$("#main>div>img").click(function()
+		{
+			$("#main p").remove();
+			var suiji=Math.floor(Math.random()*6+5);
+			var jie=$('<p> Your Discount is : '+suiji+'%</p>');
+			$(this).after(jie);
+		});
+	})
+</script>

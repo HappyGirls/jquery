@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="js/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <input type="button" name="" id="btnDel" value="删除">
+    <input type="button" name="" id="btnRe" value="恢复">
+    <div id="div01">
+        <div id="div02">
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function(){
+        $("#btnDel").click(function(){
+            //$myDel=$("#div02").remove();
+            //$myDel=$("#div02").empty();
+             $myDel=$("#div02").detach();
+        });
+        $("#btnRe").click(function(){
+            $("#div01").prepend($myDel);
+        });
+    })
+</script>

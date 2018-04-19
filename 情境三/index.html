@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jump for Joy</title>
+		<meta charset="UTF-8"/>
+		<link href="styles/my_style.css" rel="stylesheet">
+		<script src="scripts/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function(){
+				//函数：生成随机数
+				//x:随机范围上界,y:随机范围下界
+				function getRandom(x,y){
+					var randomNum=Math.floor(Math.random()*(x-y+1)+y);
+					return randomNum;
+				};
+				//函数：藏宝
+				var hideCode=function(){
+					var myIndex=getRandom(3,0);//生成藏宝箱的序号
+					$("#main>div").each(function(index,value){
+						if (myIndex==index){
+							$(this).append("<span id='has_discount'>&</span>");
+							return false;
+						}
+					});
+				}
+				hideCode();
+				//var myIndex=getRandom(3,0);//生成藏宝箱的序号
+				//$("#main>div").eq(myIndex).append("<span id='has_discount'>$</span>");
+				//响应单机只有事件
+				$("#main>div").click(checkForCode);
+				//判断是否找到宝
+				function checkForCode(){
+					//生成折扣码
+					var discountCode="CODE"+getRandom(99,10);
+					//判断是否找到当前对象中是否包含ID为has_discount的元素
+					/*if(isthis.find("span").length==0){
+						alert("没有折扣");
+					}
+					else
+					{
+						alert("生成折扣");
+
+					}*/
+					if($.contains(this,document.getElementById("has_discount"))){
+						//若包含，即可找到宝,显示折扣码
+						$(this).append("<p>"+discountCode+"</p>");
+						
+						
+					}
+					else{
+						//若不包含，即没有找到宝，显示“这次没有折扣”
+						$(this).append("<p>Sorry,no discount.</p>");
+
+						
+					}
+					$("#main>div").off("click");
+				};
+			});
+		</script>
+	</head>
+	<body>
+		<div id="header">
+			<h2>Jump for Joy Sale</h2>
+		</div>
+		<div id="main">
+			<div><img src="images/jump1.jpg"/></div>
+			<div><img src="images/jump2.jpg"/></div>
+			<div><img src="images/jump3.jpg"/></div>
+			<div><img src="images/jump4.jpg"/></div>
+		</div>
+	</body>
+</html>
